@@ -59,49 +59,49 @@ router.post("/", (req, res) => {
     });
 });
 
-router.put("/:id", async (req, res) => {
-  try {
-    const count = await Cars.update(req.params.id, req.body);
-    if (!count) {
-      res.json({ message: "no post with that id" });
-    } else {
-      const updatedPost = await Cars.getById(req.params.id).first();
-      res.json(updatedPost);
-    }
-  } catch (error) {
-    res.json({ message: error.message });
-  }
-});
+// router.put("/:id", async (req, res) => {
+//   try {
+//     const count = await Cars.update(req.params.id, req.body);
+//     if (!count) {
+//       res.json({ message: "no post with that id" });
+//     } else {
+//       const updatedPost = await Cars.getById(req.params.id).first();
+//       res.json(updatedPost);
+//     }
+//   } catch (error) {
+//     res.json({ message: error.message });
+//   }
+// });
 
-router.put("/:id", (req, res) => {
-  Cars.update(req.params.id, req.body)
-    .then((count) => {
-      if (!count) {
-        res.json({ message: "no post with that id" });
-      } else {
-        return Cars.getById(req.params.id).first();
-      }
-    })
-    .then((data) => {
-      res.json(data);
-    })
-    .catch((error) => {
-      res.json({ message: error.message });
-    });
-});
+// router.put("/:id", (req, res) => {
+//   Cars.update(req.params.id, req.body)
+//     .then((count) => {
+//       if (!count) {
+//         res.json({ message: "no post with that id" });
+//       } else {
+//         return Cars.getById(req.params.id).first();
+//       }
+//     })
+//     .then((data) => {
+//       res.json(data);
+//     })
+//     .catch((error) => {
+//       res.json({ message: error.message });
+//     });
+// });
 
-router.delete("/:id", (req, res) => {
-  Cars.delete(req.params.id)
-    .then((deletedRowsNumber) => {
-      if (!deletedRowsNumber) {
-        res.json({ message: "no post with given id" });
-      } else {
-        res.json({ message: "post deleted successfully" });
-      }
-    })
-    .catch((error) => {
-      res.json({ message: error.message });
-    });
-});
+// router.delete("/:id", (req, res) => {
+//   Cars.delete(req.params.id)
+//     .then((deletedRowsNumber) => {
+//       if (!deletedRowsNumber) {
+//         res.json({ message: "no post with given id" });
+//       } else {
+//         res.json({ message: "post deleted successfully" });
+//       }
+//     })
+//     .catch((error) => {
+//       res.json({ message: error.message });
+//     });
+// });
 
 module.export = router;
